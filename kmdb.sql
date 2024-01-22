@@ -104,14 +104,130 @@
 .headers off
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
--- TODO!
+DROP TABLE IF EXISTS movie;
+DROP TABLE IF EXISTS actor;
+DROP TABLE IF EXISTS studio;
 
 -- Create new tables, according to your domain model
--- TODO!
+CREATE TABLE movie (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    year_released INTEGER,
+    MPAA_rating TEXT,
+    studio_name TEXT
+);
+
+CREATE TABLE actor (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    movie_title TEXT,
+    actor_name TEXT,
+    character_name TEXT,
+    FOREIGN KEY (movie_title) REFERENCES movie(title)
+);
+
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
--- TODO!
+INSERT INTO movie (
+    title,
+    year_released,
+    MPAA_rating,
+    studio_name
+) VALUES (
+    "Batman Begins",
+    2005,
+    "PG-13",
+    "Warner Bros."
+),
+(
+    "The Dark Knight",
+    2008,
+    "PG-13",  
+    "Warner Bros."
+),
+(
+    "The Dark Knight Rises",
+    2012,
+    "PG-13",
+    "Warner Bros."
+);
+
+
+INSERT INTO actor (
+    movie_title,
+    actor_name,
+    character_name
+) VALUES (
+    "Batman Begins",
+    "Christian Bale",
+    "Bruce Wayne"
+),
+(
+    "Batman Begins",
+    "Michael Caine",
+    "Alfred"
+),
+(
+    "Batman Begins",
+    "Liam Neeson",
+    "Ra's Al Ghul"
+),
+(
+    "Batman Begins",
+    "Katie Holmes",
+    "Rachel Dawes"
+),
+(
+    "The Dark Knight",
+    "Christian Bale",
+    "Bruce Wayne"
+),
+(
+    "The Dark Knight",
+    "Heath Ledger",
+    "Joker"
+),
+(
+    "The Dark Knight",
+    "Aaron Eckhar",
+    "Harvey Dent"
+),
+(
+    "The Dark Knight",
+    "Michael Caine",
+    "Alfred"
+),
+(
+    "The Dark Knight",
+    "Maggie Gyllenhaal",
+    "Rachel Dawes"
+),
+(
+    "The Dark Knight Rises",
+    "Christian Bale",
+    "Bruce Wayne"
+),
+(
+    "The Dark Knight Rises",
+    "Gary Oldman",
+    "Commissioner Gordon"
+),
+(
+    "The Dark Knight Rises",
+    "Tom Hardy",
+    "Bane"
+),
+(
+    "The Dark Knight Rises",
+    "Joseph Gordon-Levitt",
+    "John Blake"
+),
+(
+    "The Dark Knight Rises",
+    "Anne Hathaway",
+    "Selina Kyle"
+);
+
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -119,7 +235,7 @@
 .print ""
 
 -- The SQL statement for the movies output
--- TODO!
+SELECT * FROM movie;
 
 -- Prints a header for the cast output
 .print ""
@@ -129,4 +245,4 @@
 
 
 -- The SQL statement for the cast output
--- TODO!
+SELECT * FROM actor;
